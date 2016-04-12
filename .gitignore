@@ -9,7 +9,7 @@ npm-debug.log*
 # Dependency directory
 node_modules
 
-public/bower_components
+src/public/bower_components
 
-public/css/**/*.css
-public/css/*.css
+src/public/css/**/*.css
+src/public/css/*.css
