@@ -13,7 +13,9 @@ var config = require('./lib/config');
 // Body Parser
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
 // Logger
 var logger = require('morgan');
@@ -77,9 +79,8 @@ app.use(function(err, req, res, next) {
 });
 
 // Export the application or start the server
-if(!!module.parent){
+if (!!module.parent) {
     module.exports = app;
-}
-else {
+}else {
     app.listen(config().serverPort);
 }
