@@ -25,12 +25,12 @@ resetElement()
     padding 0
 
 clearfix()
-*zoom 1
-&:after
-    content ''
-    display block
-    clear both
-    height 0
+    *zoom 1
+    &:after
+        content ''
+        display block
+        clear both
+        height 0
 
 position(position, args...)
     position position
@@ -47,7 +47,7 @@ position(position, args...)
 
         if args[3] != false
             left args[3]
-        else if length(args) == 3
+    else if length(args) == 3
         if args[0] != false
             top args[0]
 
@@ -56,13 +56,13 @@ position(position, args...)
 
         if args[2] != false
             bottom args[2]
-        else if length(args) == 2
+    else if length(args) == 2
         if args[0] != false
             top args[0]
 
         if args[1] != false
             right args[1]
-        else
+    else
         if args[0] != false
             top args[0]
 
@@ -104,7 +104,7 @@ centerWithMargin(initMargin = 0, args...)
 
         if args[3] != false
             margin-left args[3]
-        else if length(args) == 3
+    else if length(args) == 3
         if args[0] != false
             margin-top args[0]
 
@@ -113,13 +113,13 @@ centerWithMargin(initMargin = 0, args...)
 
         if args[2] != false
             margin-bottom args[2]
-        else if length(args) == 2
+    else if length(args) == 2
         if args[0] != false
             margin-top args[0]
 
         if args[1] != false
             margin-right args[1]
-        else
+    else
         if args[0] != false
             margin-top args[0]
 
@@ -201,8 +201,8 @@ retina(image, extension = 'png')
     background-image url(image'.'extension)
 
     @media (min-device-pixel-ratio: 2),
-    (min-device-pixel-ratio: 2),
-(min-resolution: 192dpi),
-(min-resolution: 2dppx)
-background-image url(image'_@2x.'extension)
-background-size cover
+           (min-device-pixel-ratio: 2),
+           (min-resolution: 192dpi),
+           (min-resolution: 2dppx)
+        background-image url(image'_@2x.'extension)
+        background-size cover
