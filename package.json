@@ -18,7 +18,7 @@
     "debug": "~2.2.0",
     "express": "~4.13.1",
     "express-handlebars": "latest",
-    "lodash": "latest",
+    "lodash": "2.4.2",
     "morgan": "~1.6.1",
     "stylus": "latest",
     "js-yaml": "latest",

@@ -10,7 +10,7 @@ module.exports = {
 
     if (_.contains(config().languages.list, language)) {
       try {
-        content = require('../../content/i18n/' + config().languages.default);
+        content = require('../../content/i18n/' + language);
       } catch (e) {
         content = require('../../content/i18n/' + config().languages.default);
       }
