@@ -7,7 +7,7 @@ var path = require('path');
 // Initializing express application
 var app = express();
 
-// Loading config
+// Loading Config
 var config = require('./lib/config');
 
 // Body Parser
@@ -23,7 +23,9 @@ app.use(logger('dev'));
 
 // Cookies / Session
 var cookieParser = require('cookie-parser');
+var session = require('./lib/helpers/session');
 app.use(cookieParser());
+app.use(session);
 
 // Layout setup
 var exphbs = require('express-handlebars');
@@ -46,7 +48,7 @@ if (!config().html.css.stylusPrecompile) {
     );
 }
 
-// Handlerbars setup
+// Handlebars setup
 app.engine(config().views.engine, exphbs({
     extname: config().views.extension,
     defaultLayout: config().views.layout,
@@ -59,42 +61,20 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', config().views.engine);
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Routers
-var home = require('./routes/home');
-var users = require('./routes/users');
-
-app.use('/', home);
-app.use('/users', users);
-
-// catch 404 and forward to error handler
+// Sending config to templates
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+    res.locals.config = config();
+    next();
 });
 
-// error handlers
-if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
-    });
-}
+// Disabling x-powered-by
+app.disable('x-powered-by');
 
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
+require('./router')(app);
 
-// Export the application or start the server
+// Export application or start the server
 if (!!module.parent) {
     module.exports = app;
-}else {
+} else {
     app.listen(config().serverPort);
 }
